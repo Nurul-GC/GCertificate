@@ -1,2 +1,2 @@
 # GCertificate
-app-site that helps you creating certificates easily
+app-site that helps you to create certificates easily
