@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 
@@ -75,10 +75,13 @@ WSGI_APPLICATION = 'set.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+if not os.path.exists(f'{BASE_DIR}/database'):
+    os.mkdir(f'{BASE_DIR}/database')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'gcertificate.db',
+        'NAME': BASE_DIR / 'database/gcertificate.db',
     }
 }
 
@@ -107,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Johannesburg'
 
 USE_I18N = True
 
