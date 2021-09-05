@@ -1,34 +1,71 @@
+import os.path
+
 from fpdf import FPDF, HTMLMixin
 from datetime import date
 
 
 class GCertificate(FPDF, HTMLMixin):
-    title = "Certificado de Participacao"
-    logo = "favicon-192x192.png"
-    company = "ArtesGC Inc."
-    student = "Nurul GC"
+    type = ""
+    title = ""
+    logo = ""
+    language = ""
+    company_name = ""
+    student_name = ""
     today = date.today()
-    content = ("Lorem ipsum dolor sit amet consectetur adipiscing elit iaculis, egestas sollicitudin suscipit sed est arcu vel rutrum torquent,\n"
-               "consequat a sociosqu felis class nibh mi. Erat porttitor accumsan neque sodales massa euismod ultricies eleifend vestibulum, nam porta pellentesque platea ultrices nec nibh congue,\n"
-               "vel sociosqu venenatis enim faucibus morbi vitae nullam. Arcu hac felis porta suscipit senectus orci nisl condimentum, dis risus morbi luctus laoreet tristique aptent nibh, ligula eros pellentesque\n"
-               "eget sagittis non lacus. Dis tellus cras hendrerit semper consequat, tempor parturient laoreet purus neque pretium, metus varius diam tortor. Tortor erat feugiat morbi vehicula metus eros rutrum\n"
-               "dignissim velit, himenaeos nullam maecenas laoreet at penatibus ante cras, sociosqu augue class aenean leo pharetra fusce euismod. Magnis id felis praesent pharetra porttitor molestie venenatis\n"
-               "parturient, potenti at neque cum justo laoreet facilisis tempus, vitae pretium placerat in egestas luctus sollicitudin.<br><br>\n")
+    description = ""
 
     def html(self):
-        return f"""
+        if self.language == "English":
+            if self.type == "Training Certificate":
+                pass
+            elif self.type == "Certificate of Participation":
+                pass
+        elif self.language == "Português":
+            if self.type == "Certificado de Formação":
+                pass
+            elif self.type == "Certificado de Participação":
+                pass
+
+    def cp(self):
+        """certificate of participation content"""
+        if self.language == "English":
+            return f"""<center>
+<img src="{self.logo}" width="50", height="50">
+<h1><i>{self.type}</i></h1>
+</center>
+<br><br>
+{'-' * 390}
+
+<p>
+It is with great honor that <b>{self.company}<b> certifies and appreciates the collaboration and presence of <b>{self.student}<b> on this event.<br>
+</p>
+
+<p>
+{self.description}
+<br><br>
+Certificate issued in: <b>{self.today}</b><br>
+</p>
+
+{'-' * 390}
+<br><br>
+<p align="right"><b>Signature of the Responsible{' ' * 20}</b><br><br>
+_____________________________________________</p>
+</div>
+"""
+        elif self.language == "Português":
+            return f"""
 <center>
 <img src="{self.logo}" width="50", height="50">
-<h1><i>{self.title}</i></h1>
+<h1><i>{self.type}</i></h1>
 </center>
 <br><br>
 {'-'*390}
 
 <p>
-E com bastante honra que a <b>{self.company}</b> certifica e agradece a colaboracao do carissimo <b>{self.student}</b>
-na elaboracao deste projecto.<br><br>
+E com bastante honra que a <b>{self.company_name}</b> certifica e agradece a colaboração e presença do carissimo <b>{self.student_name}</b>
+neste evento.<br><br>
 
-{self.content}
+{self.description}
 
 Certificado emitido em: <b>{self.today}</b><br>
 </p>
@@ -40,13 +77,26 @@ _____________________________________________</p>
 </div>
 """
 
+    def tc(self):
+        """training certificate content"""
+        if self.language == "English":
+            pass
+        elif self.language == "Português":
+            pass
+
     def gencert(self):
         texto = self.html()
         self.add_page(orientation='L')
+        self.set_author(author=self.company_name)
+        self.set_title(title=self.title)
         self.write_html(text=texto)
+        self.output(name=f'{self.title}.pdf', dest='F')
+        return os.path.abspath(f'./{self.title}.pdf')
 
 
 if __name__ == '__main__':
     certificate = GCertificate(format='A4')
+    certificate.language = "English"
+    certificate.title = "teste"
+    certificate.type = "Certificate of Participation"
     certificate.gencert()
-    certificate.output(name='static/pdf/teste.pdf', dest='F')
