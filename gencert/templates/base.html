@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load django_bootstrap5 %}{% load static %}
+
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {% bootstrap_css %}
+  {% bootstrap_js %}
+
+  <link rel="apple-touch-icon" sizes="180x180"
+        href="{% static '/img/favicon/apple-touch-icon.png' %}">
+  <link rel="icon" sizes="32x32" href="{% static '/img/favicon/favicon-32x32.png' %}"
+        type="image/png">
+  <link rel="icon" sizes="16x16" href="{% static '/img/favicon/favicon-16x16.png' %}"
+        type="image/png">
+  <link rel="shortcut icon" href="{% static '/img/favicon/favicon.ico' %}" type="image/x-icon">
+  <link rel="manifest" href="{% static '/img/favicon/site.webmanifest' %}">
+
+  {% if title %}
+  <title>{{ title }}</title>
+  {% else %}
+  <title>GCertificate</title>
+  {% endif %}
+
+  {% block extra_head %}{% endblock extra_head %}
+</head>
+<body class="bg-dark">
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+  <a class="navbar-brand" href="{% url ':index' %}">
+    <img src="{% static '/img/favicon/favicon-32x32.png' %}">
+  </a>
+
+  <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url ':'%}" title=""></a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <span class="navbar-text"><b>Olaa, {{ user.username }}!</b> -</span>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url ':logout' %}">Terminar sessao</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <span class="navbar-text"><b>Olaa, Companheiro!</b> -</span>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url ':login' %}">Inicie sessao</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url ':cadastrar' %}">Cadastre-se</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+<main role="main" class="container bg-light" style="padding: 10px; border-radius: 5px;">
+  <div class="pb-2 mb-2 border-bottom">
+    {% block page_header %}{% endblock page_header %}
+  </div>
+  <div>{% block content %}{% endblock content %}</div>
+</main>
+</body>
+</html>
