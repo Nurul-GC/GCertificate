@@ -1,0 +1,3 @@
+Django
+fpdf
+django_bootstrap5
