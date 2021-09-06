@@ -1,0 +1,21 @@
+{% extends 'base.html' %}{% load django_bootstrap5 %}
+
+{% block extra_head %}{% endblock extra_head %}
+
+{% block page_header %}
+<h1 title="Ola, Seja Bem-Vindo ao GCertificate..">
+  Hello, Welcome to GCertificate..
+</h1>
+<p title="Crie simples certificados, rápido e fácil com o nosso gerador de certificados!">
+  Create simple certificates, quickly and easily with our Generator of Certificates!
+</p>
+{% endblock page_header %}
+
+{% block content %}
+<a class="btn" href="{% url 'cp' %}" style="padding: 50px;" title="Certificado de Participação">
+  Certificate of Participation
+</a>
+<a class="btn" href="{% url 'tc' %}" style="padding: 50px;" title="Certificado de Formação">
+  Training Certificate
+</a>
+{% endblock content %}
