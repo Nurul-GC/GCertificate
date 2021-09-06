@@ -14,34 +14,40 @@ class GCertificate(FPDF, HTMLMixin):
     today = date.today()
     description = ""
 
+    def _description(self):
+        return self.description.replace("\n", "<br>")
+
     def html(self):
         if self.language == "English":
             if self.type == "Training Certificate":
-                pass
+                return self.tc()
             elif self.type == "Certificate of Participation":
-                pass
+                return self.cp()
         elif self.language == "Português":
             if self.type == "Certificado de Formação":
-                pass
+                return self.tc()
             elif self.type == "Certificado de Participação":
-                pass
+                return self.cp()
 
     def cp(self):
-        """certificate of participation content"""
+        """
+        - certificate of participation content
+        - conteudo do certificado de participacao
+        """
         if self.language == "English":
             return f"""<center>
-<img src="{self.logo}" width="50", height="50">
+<img src="{self.logo}" width="50" height="50">
 <h1><i>{self.type}</i></h1>
 </center>
 <br><br>
 {'-' * 390}
 
 <p>
-It is with great honor that <b>{self.company}<b> certifies and appreciates the collaboration and presence of <b>{self.student}<b> on this event.<br>
+It is with great honor that <b>{self.company_name}</b> certifies the collaboration and appreciates the presence of <b>{self.student_name}</b> on this event.<br>
 </p>
 
 <p>
-{self.description}
+{self._description()}
 <br><br>
 Certificate issued in: <b>{self.today}</b><br>
 </p>
@@ -55,18 +61,20 @@ _____________________________________________</p>
         elif self.language == "Português":
             return f"""
 <center>
-<img src="{self.logo}" width="50", height="50">
+<img src="{self.logo}" width="50" height="50">
 <h1><i>{self.type}</i></h1>
 </center>
 <br><br>
 {'-'*390}
 
 <p>
-E com bastante honra que a <b>{self.company_name}</b> certifica e agradece a colaboração e presença do carissimo <b>{self.student_name}</b>
-neste evento.<br><br>
+E com bastante honra que a <b>{self.company_name}</b> certifica a colaboração e agradece a presença do carissimo <b>{self.student_name}</b>
+neste evento.<br>
+</p>
 
-{self.description}
-
+<p>
+{self._description()}
+<br><br>
 Certificado emitido em: <b>{self.today}</b><br>
 </p>
 
@@ -78,11 +86,14 @@ _____________________________________________</p>
 """
 
     def tc(self):
-        """training certificate content"""
+        """
+        - training certificate content
+        - conteudo do certificado de formacao
+        """
         if self.language == "English":
-            pass
+            return f"""..."""
         elif self.language == "Português":
-            pass
+            return f"""..."""
 
     def gencert(self):
         texto = self.html()
@@ -92,11 +103,3 @@ _____________________________________________</p>
         self.write_html(text=texto)
         self.output(name=f'{self.title}.pdf', dest='F')
         return os.path.abspath(f'./{self.title}.pdf')
-
-
-if __name__ == '__main__':
-    certificate = GCertificate(format='A4')
-    certificate.language = "English"
-    certificate.title = "teste"
-    certificate.type = "Certificate of Participation"
-    certificate.gencert()
