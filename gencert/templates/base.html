@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load django_bootstrap5 %}{% load static %}
 
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,8 +28,8 @@
   {% block extra_head %}{% endblock extra_head %}
 </head>
 <body class="bg-dark">
-<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
-  <a class="navbar-brand" href="{% url ':index' %}">
+<nav class="navbar navbar-expand-md mb-4 border" style="background-color:'#D88';">
+  <a class="navbar-brand" href="{% url 'index' %}">
     <img src="{% static '/img/favicon/favicon-32x32.png' %}">
   </a>
 
@@ -48,11 +48,11 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{% url ':'%}" title=""></a>
+        <a class="nav-link" href="{% url ''%}" title=""></a>
       </li>
     </ul>
 
-    <ul class="navbar-nav ml-auto">
+    <!--ul class="navbar-nav ml-auto">
       {% if user.is_authenticated %}
       <li class="nav-item">
         <span class="navbar-text"><b>Olaa, {{ user.username }}!</b> -</span>
@@ -74,14 +74,19 @@
         <a class="nav-link" href="{% url ':cadastrar' %}">Cadastre-se</a>
       </li>
       {% endif %}
-    </ul>
+    </ul-->
   </div>
 </nav>
 <main role="main" class="container bg-light" style="padding: 10px; border-radius: 5px;">
   <div class="pb-2 mb-2 border-bottom">
     {% block page_header %}{% endblock page_header %}
   </div>
-  <div>{% block content %}{% endblock content %}</div>
+  <div>
+    {% block content %}{% endblock content %}
+  </div>
 </main>
+<footer class="container border" style="background-color:'#D88';">
+  <p align="center"></p>
+</footer>
 </body>
 </html>
