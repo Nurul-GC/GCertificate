@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import gencert.views as gcv
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('master/', admin.site.urls),
+    path('', gcv.index, name='index'),
+    path('cp/', gcv.cp, name='cp'),
+    path('tc/', gcv.tc, name='tc'),
 ]
