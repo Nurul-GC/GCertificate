@@ -1,21 +1,81 @@
-{% extends 'base.html' %}{% load django_bootstrap5 %}
+{% extends 'base.html' %}{% load django_bootstrap5 %}{% load static %}
 
-{% block extra_head %}{% endblock extra_head %}
+{% block extra_head %}
+<style>
+  .btn{
+    padding:10px;
+    border-style:solid;
+    border-radius:10px;
+    border-width:1px;
+    border-color:white;
+    font-weight:bold;
+    background-color:#D88;
+    margin-right:20px;
+    margin-top:20px;
+  }
+  .btn:hover{
+    padding:8px;
+    border-style:solid;
+    border-radius:15px;
+    border-width:1px;
+    border-color:white;
+    font-weight:bold;
+    background-color:#d89888;
+  }
+  .rw{
+    text-align:center;
+  }
+  .cd{
+    width:540px;
+    height:auto;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    border-radius:10px;
+    font-weight:bold;
+    margin-bottom:20px;
+    background-color:#d88888;
+  }
+  .cdi{
+    padding:5px;
+    width:538px;
+    height:376px;
+    border-width:1px;
+    border-style:solid;
+    border-color:white;
+    border-radius:10px;
+  }
+</style>
+{% endblock extra_head %}
 
 {% block page_header %}
-<h1 title="Ola, Seja Bem-Vindo ao GCertificate..">
-  Hello, Welcome to GCertificate..
-</h1>
-<p title="Crie simples certificados, rápido e fácil com o nosso gerador de certificados!">
-  Create simple certificates, quickly and easily with our Generator of Certificates!
-</p>
+<h2>
+  <b title="Começando..">Getting Started..</b><br>
+</h2>
 {% endblock page_header %}
 
 {% block content %}
-<a class="btn" href="{% url 'cp' %}" style="padding: 50px;" title="Certificado de Participação">
-  Certificate of Participation
-</a>
-<a class="btn" href="{% url 'tc' %}" style="padding: 50px;" title="Certificado de Formação">
-  Training Certificate
-</a>
+<div class="rw row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card cd">
+      <img src="{% static '/img/demos/gencert_cp_en.png' %}" class="card-img-left cdi"
+           alt="certificate-of-participation">
+      <div class="card-body">
+        <p class="card-title" title="Certificado de Participação">Certificate of Participation</p>
+        <p class="card-text">...</p>
+        <a class="btn" href="{% url 'cp' %}" title="Criar">Create</a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card cd">
+      <img src="{% static '/img/demos/gencert_tc_en.png' %}" class="card-img-left cdi" alt="...">
+      <div class="card-body">
+        <p class="card-title" title="Certificado de Formação">Training Certificate</p>
+        <p class="card-text">...</p>
+        <a class="btn" href="{% url 'tc' %}" title="Criar">Create</a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}
