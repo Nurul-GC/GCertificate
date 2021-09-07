@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load static %}
 
 {% block extra_head %}
 <script src="http://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
@@ -48,7 +48,7 @@
         zoom: 1
     }
 
-    pdfjsLib.getDocument('{{filelocation}}').then((pdf) => {
+    pdfjsLib.getDocument('{% static "filename" %}').then((pdf) => {
 
         myState.pdf = pdf;
         render();
