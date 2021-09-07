@@ -6,11 +6,13 @@
 
 {% block page_header %}
 <h2 title="Certificado de Formação">Training Certificate</h2>
-<small></small>
+<small title="Preencha os dados para concluir a edição do certificado">
+  Fill in the data to complete editing the certificate.
+</small>
 {% endblock page_header %}
 
 {% block content %}
-<form class="form" method="post" action="{% url 'preview' %}">
+<form class="form" method="post">
   {% csrf_token %}
   {% bootstrap_form tc_form %}
 
