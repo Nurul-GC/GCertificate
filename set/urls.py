@@ -22,4 +22,5 @@ urlpatterns = [
     path('', gcv.index, name='index'),
     path('cp/', gcv.cp, name='cp'),
     path('tc/', gcv.tc, name='tc'),
+    path('preview/<_filename>', gcv.preview, name='preview')
 ]
