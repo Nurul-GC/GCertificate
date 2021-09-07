@@ -1,7 +1,20 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load django_bootstrap5 %}
 
-{% block extra_head %}{% endblock extra_head %}
+{% block extra_head %}
 
-{% block page_header %}{% endblock page_header %}
+{% endblock extra_head %}
 
-{% block content %}{% endblock content %}
+{% block page_header %}
+<h2 title="Certificado de Formação">Training Certificate</h2>
+<small></small>
+{% endblock page_header %}
+
+{% block content %}
+<form class="form" method="post" action="{% url 'preview' %}">
+  {% csrf_token %}
+  {% bootstrap_form tc_form %}
+
+  {% bootstrap_button button_type="submit" content="OK" %}
+  {% bootstrap_button button_type="reset" content="Cancel" %}
+</form>
+{% endblock content %}
