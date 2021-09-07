@@ -2,6 +2,17 @@
 
 {% block extra_head %}{% endblock extra_head %}
 
-{% block page_header %}{% endblock page_header %}
+{% block page_header %}
+<h2 title="Certificado de Participação">Certificate of Participation</h2>
+<small></small>
+{% endblock page_header %}
 
-{% block content %}{% endblock content %}
+{% block content %}
+<form class="form" method="post" action="{% url 'preview' %}">
+  {% csrf_token %}
+  {% bootstrap_form cp_form %}
+
+  {% bootstrap_button button_type="submit" content="OK" %}
+  {% bootstrap_button button_type="reset" content="Cancel" %}
+</form>
+{% endblock content %}
