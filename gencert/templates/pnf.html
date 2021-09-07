@@ -1,6 +1,29 @@
 {% extends 'base.html' %}{% load django_bootstrap5 %}
 
-{% block extra_head %}{% endblock extra_head %}
+{% block extra_head %}
+<style>
+  .btn{
+    padding:10px;
+    border-style:solid;
+    border-radius:10px;
+    border-width:1px;
+    border-color:white;
+    font-weight:bold;
+    background-color:#D88;
+    margin-right:20px;
+    margin-top:20px;
+  }
+  .btn:hover{
+    padding:8px;
+    border-style:solid;
+    border-radius:15px;
+    border-width:1px;
+    border-color:white;
+    font-weight:bold;
+    background-color:#d89888;
+  }
+</style>
+{% endblock extra_head %}
 
 {% block page_header %}
 <h2 title="Página não encontrada..">Page Not Found..</h2>
@@ -17,5 +40,11 @@
   <li><a href="{% url 'cp' %}">Generate a Certificate of Participation</a></li>
   <li><a href="{% url 'tc' %}">Generate a Training Certificate</a></li>
 </ul>
-{% bootstrap_button button_type="reset" content="Go Back" %}
+<button class="btn" onclick="goBack()" title="Voltar">Go Back</button>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
 {% endblock content %}
