@@ -5,14 +5,15 @@ from datetime import date
 
 
 class GCertificate(FPDF, HTMLMixin):
-    type = ""
-    title = ""
-    logo = ""
-    language = ""
-    company_name = ""
-    student_name = ""
+    type = None
+    logo = None
+    title = None
+    language = None
+    description = None
+    course_name = None
+    company_name = None
+    student_name = None
     today = date.today()
-    description = ""
 
     def _description(self):
         return self.description.replace("\n", "<br>")
@@ -96,10 +97,14 @@ _____________________________________________</p>
             return f"""..."""
 
     def gencert(self):
-        texto = self.html()
-        self.add_page(orientation='L')
-        self.set_author(author=self.company_name)
-        self.set_title(title=self.title)
-        self.write_html(text=texto)
-        self.output(name=f'{self.title}.pdf', dest='F')
-        return os.path.abspath(f'./{self.title}.pdf')
+        try:
+            texto = self.html()
+            self.add_page(orientation='L')
+            self.set_author(author=self.company_name)
+            self.set_title(title=self.title)
+            self.write_html(text=texto)
+            os.makedirs(name='static/pdfs/', exist_ok=True)
+            self.output(name=f'static/pdfs/{self.title}.pdf', dest='F')
+            return f'{self.title}.pdf'
+        except Exception as error:
+            raise error
