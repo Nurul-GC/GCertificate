@@ -1,2 +1,2 @@
 cd ..
-python3 ./manage.py runserver
+python3 ./django-proj/manage.py runserver
