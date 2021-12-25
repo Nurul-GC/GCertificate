@@ -1,3 +1,7 @@
+# ******************************************************************************
+#  Copyright (c) 2021 Nurul-GC.                                                *
+# ******************************************************************************
+
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, redirect
 from gencert.forms import TcForm, CpForm
