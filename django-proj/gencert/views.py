@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render, redirect
 from gencert.forms import TcForm, CpForm
 from gencert.gcertificate import GCertificate
 
@@ -11,14 +12,15 @@ def index(request):
 
 
 def tc(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.FILES:
         form = TcForm(request.POST)
         if form.is_valid():
+            savedlogo = safefile(_filename=request.FILES['logo'])
             data = form.cleaned_data
             certificate.language = data['language']
             certificate.title = data['title']
             certificate.type = data['type']
-            certificate.logo = data['logo']
+            certificate.logo = savedlogo
             certificate.company_name = data['company_name']
             certificate.student_name = data['student_name']
             certificate.description = data['description']
@@ -30,14 +32,15 @@ def tc(request):
 
 
 def cp(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.FILES:
         form = CpForm(request.POST)
         if form.is_valid():
+            savedlogo = safefile(_filename=request.FILES['logo'])
             data = form.cleaned_data
             certificate.language = data['language']
             certificate.title = data['title']
             certificate.type = data['type']
-            certificate.logo = data['logo']
+            certificate.logo = savedlogo
             certificate.company_name = data['company_name']
             certificate.student_name = data['student_name']
             certificate.description = data['description']
@@ -52,5 +55,11 @@ def preview(request, _filename):
     if _filename.endswith('.pdf'):
         filename = f'/pdfs/{_filename}'
     else:
-        return render(request=request, template_name='pnf.html')
-    return render(request=request, template_name='pdf_preview.html', context={'filename': filename, 'title': 'Not Found'})
+        return render(request=request, template_name='pnf.html', context={'title': 'Not Found'})
+    return render(request=request, template_name='pdf_preview.html', context={'filename': filename})
+
+
+def safefile(_filename):
+    fs = FileSystemStorage()
+    sf = fs.save(_filename.name, _filename)
+    return fs.path(sf)  # fs.url(sf)
