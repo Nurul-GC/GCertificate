@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 import gencert.views as gcv
 
 urlpatterns = [
@@ -22,5 +24,6 @@ urlpatterns = [
     path('', gcv.index, name='index'),
     path('cp/', gcv.cp, name='cp'),
     path('tc/', gcv.tc, name='tc'),
-    path('preview/<_filename>', gcv.preview, name='preview')
+    path('preview/<str:_filename>', gcv.preview, name='preview')
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
