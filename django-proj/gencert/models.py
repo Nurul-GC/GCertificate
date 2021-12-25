@@ -12,7 +12,7 @@ class CP(models.Model):
         ('Certificado de Participação', 'Certificado de Participação'),
         ('Certificate of Participation', 'Certificate of Participation')
     )
-    logo = models.ImageField()
+    logo = models.FileField(upload_to=f'media/logos/')
     language = models.CharField(choices=LANG, max_length=10, help_text='Escolha o idioma do certificado!')
     document_title = models.CharField(max_length=50, help_text='Digite um titulo para o documento!')
     document_subject = models.CharField(choices=TYPES, max_length=30, help_text='Escolha o tema do certificado!')
@@ -34,7 +34,7 @@ class TC(models.Model):
         ('Training Certificate', 'Training Certificate'),
         ('Certificado de Formação', 'Certificado de Formação'),
     )
-    logo = models.ImageField()
+    logo = models.FileField(upload_to=f'media/logos/')
     language = models.CharField(choices=LANG, max_length=10, help_text='Escolha o idioma do certificado!')
     document_title = models.CharField(max_length=50, help_text='Digite um titulo para o documento!')
     document_subject = models.CharField(choices=TYPES, max_length=30, help_text='Escolha o tema do certificado!')
