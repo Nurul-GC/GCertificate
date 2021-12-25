@@ -1,3 +1,7 @@
+# ******************************************************************************
+#  Copyright (c) 2021 Nurul-GC.                                                *
+# ******************************************************************************
+
 from os import curdir
 from subprocess import getoutput
 from time import sleep
