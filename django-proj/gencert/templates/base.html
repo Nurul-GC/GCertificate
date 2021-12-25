@@ -47,6 +47,7 @@
       text-decoration:none;
     }
     .magicbox{
+      color:white;
       padding:20px;
       border-radius:5px;
     }
@@ -59,7 +60,7 @@
 
   {% block extra_head %}{% endblock extra_head %}
 </head>
-<body class="bg-dark">
+<body class="bg-light">
 <nav class="navbar navbar-expand-md mb-4 border bg-nav-color">
   <div class="navbar-brand nb">
     <a href="{% url 'index' %}"><h3><b>GCertificate</b></h3></a>
@@ -114,7 +115,7 @@
     </ul>
   </div-->
 </nav>
-<main role="main" class="magicbox container bg-light">
+<main role="main" class="magicbox container bg-dark">
   <div class="pb-2 mb-2 border-bottom">
     {% block page_header %}{% endblock page_header %}
   </div>
