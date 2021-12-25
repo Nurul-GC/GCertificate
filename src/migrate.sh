@@ -1,2 +1,2 @@
 cd ..
-python3 ./manage.py migrate
+python3 ./django-proj/manage.py migrate
