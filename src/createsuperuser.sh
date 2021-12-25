@@ -1,2 +1,2 @@
 cd ..
-python3 ./manage.py createsuperuser
+python3 ./django-proj/manage.py createsuperuser
