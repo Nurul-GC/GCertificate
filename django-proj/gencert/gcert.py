@@ -44,17 +44,16 @@ class GCertificate(FPDF, HTMLMixin):
 {'-' * 390}
 
 <p>
-It is with great honor that <b>{self.company_name}</b> certifies the collaboration and appreciates the presence of <b>{self.student_name}</b> on this event.<br>
+It is with great honor that <b>{self.company_name}</b> certifies the collaboration 
+and appreciates the presence of <b>{self.student_name}</b> on this event.<br>
 </p>
 
 <p>
-{self._description()}
-<br><br>
+{self._description()}<br><br>
 Certificate issued in: <b>{self.today}</b><br>
 </p>
 
-{'-' * 390}
-<br><br>
+{'-' * 390}<br><br>
 <p align="right"><b>Signature of the Responsible{' ' * 20}</b><br><br>
 _____________________________________________</p>
 </div>
