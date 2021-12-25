@@ -9,6 +9,10 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+# ******************************************************************************
+#  Copyright (c) 2021 Nurul-GC.                                                *
+# ******************************************************************************
+
 import os
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
