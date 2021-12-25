@@ -1,3 +1,7 @@
+# ******************************************************************************
+#  Copyright (c) 2021 Nurul-GC.                                                *
+# ******************************************************************************
+
 import unittest
 from django import test
 from gencert.gcertificate import GCertificate
