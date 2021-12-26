@@ -1,0 +1,96 @@
+{% extends 'base.html' %}{% load django_bootstrap5 %}{% load static %}
+
+{% block extra_head %}
+<!--*************************************************************************-->
+<!-- Copyright (c) 2021 Nurul-GC.                                            -->
+<!--*************************************************************************-->
+
+<style>
+  .btn{
+    width:150px;
+    padding:5px;
+    border-style:solid;
+    border-radius:10px;
+    border-width:1px;
+    border-color:black;
+    font-weight:bold;
+    background-color:#d89888;
+    margin-right:20px;
+    margin-top:20px;
+  }
+  .btn:hover{
+    padding:4px;
+    border-style:solid;
+    border-radius:15px;
+    border-width:1px;
+    border-color:black;
+    font-weight:bold;
+    background-color:#d88;
+  }
+  .rw{
+    text-align:center;
+  }
+  .cd{
+    color:black;
+    width:540px;
+    height:auto;
+    border-width:1px;
+    border-style:solid;
+    border-color:white;
+    border-radius:20px;
+    font-weight:bold;
+    margin-bottom:20px;
+    background-color:#d88888;
+  }
+  .cdi{
+    padding:10px;
+    width:538px;
+    height:376px;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    border-radius:20px;
+  }
+  .cdi:hover{
+    padding:0;
+    width:538px;
+    height:376px;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    border-radius:20px;
+  }
+</style>
+{% endblock extra_head %}
+
+{% block page_header %}
+<h2>
+  <b title="Começando..">Getting Started..</b><br>
+</h2>
+{% endblock page_header %}
+
+{% block content %}
+<div class="rw row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card cd">
+      <img src="{% static '/img/demos/gencert_cp_en.png' %}" class="card-img-top cdi"
+           alt="certificate-of-participation">
+      <div class="card-body">
+        <p class="card-title" title="Certificado de Participação">Certificate of Participation</p>
+        <p class="card-text">...</p>
+        <a class="btn" href="{% url 'cp' %}" title="Criar">Create</a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card cd">
+      <img src="{% static '/img/demos/gencert_tc_en.png' %}" class="card-img-top cdi" alt="...">
+      <div class="card-body">
+        <p class="card-title" title="Certificado de Formação">Training Certificate</p>
+        <p class="card-text">...</p>
+        <a class="btn" href="{% url 'tc' %}" title="Criar">Create</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
