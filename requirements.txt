@@ -1,3 +1,5 @@
 Django
 fpdf
 django_bootstrap5
+
+Flask
